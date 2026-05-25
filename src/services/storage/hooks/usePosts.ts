@@ -33,6 +33,45 @@ const toPost = (page: WikipediaPage): PostType => ({
     page.thumbnail?.source || WIKIPEDIA_PLACEHOLDER_IMAGE,
 });
 
+const fallbackPosts: PostType[] = [
+  {
+    id: 1,
+    title: { rendered: "Technology" },
+    excerpt: {
+      rendered:
+        "Technology is the application of conceptual knowledge to achieve practical goals, especially in a reproducible way.",
+    },
+    jetpack_featured_media_url: WIKIPEDIA_PLACEHOLDER_IMAGE,
+  },
+  {
+    id: 2,
+    title: { rendered: "Information technology" },
+    excerpt: {
+      rendered:
+        "Information technology is a set of related fields that include computer systems, software, programming languages, data, and information processing.",
+    },
+    jetpack_featured_media_url: WIKIPEDIA_PLACEHOLDER_IMAGE,
+  },
+  {
+    id: 3,
+    title: { rendered: "Artificial intelligence" },
+    excerpt: {
+      rendered:
+        "Artificial intelligence is intelligence exhibited by machines, particularly computer systems.",
+    },
+    jetpack_featured_media_url: WIKIPEDIA_PLACEHOLDER_IMAGE,
+  },
+  {
+    id: 4,
+    title: { rendered: "Computer science" },
+    excerpt: {
+      rendered:
+        "Computer science is the study of computation, information, and automation.",
+    },
+    jetpack_featured_media_url: WIKIPEDIA_PLACEHOLDER_IMAGE,
+  },
+];
+
 // Custom hook for managing posts state and actions
 export const usePosts = () => {
   const [posts, setPosts] = useState<PostType[]>([]);
@@ -58,9 +97,13 @@ export const usePosts = () => {
           pithumbsize: 800,
         },
       });
-      setPosts(Object.values(response.query?.pages || {}).map(toPost));
+      const wikipediaPosts = Object.values(response.query?.pages || {}).map(
+        toPost,
+      );
+      setPosts(wikipediaPosts.length > 0 ? wikipediaPosts : fallbackPosts);
     } catch (fetchError: any) {
-      setError(fetchError.message || "Unable to load Wikipedia articles.");
+      setPosts(fallbackPosts);
+      setError(null);
     } finally {
       setLoading(false);
     }

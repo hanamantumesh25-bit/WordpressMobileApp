@@ -5,7 +5,8 @@ const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     Accept: "application/json",
-    "Api-User-Agent": "WordpressMobileApp/1.0",
+    "Api-User-Agent": "WordpressMobileApp/1.0 (Expo development app)",
+    "User-Agent": "WordpressMobileApp/1.0 (Expo development app)",
   },
 });
 
