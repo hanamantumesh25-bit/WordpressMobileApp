@@ -88,21 +88,24 @@ export const postStyles = StyleSheet.create({
   container: {
     flexDirection: "row",
     marginBottom: 10,
-    marginHorizontal: 5,
+    marginHorizontal: 12,
     borderWidth: 1,
     borderColor: "#ddd",
-    backgroundColor: "#ddd",
+    backgroundColor: "#fff",
     borderRadius: 8,
     padding: 10,
+    overflow: "hidden",
   },
   subContainer: {
-    width: "70%",
+    flex: 1,
     paddingHorizontal: 10,
   },
   image: {
-    width: "30%",
+    width: 110,
     height: 100,
     alignSelf: "center",
+    backgroundColor: "#e5e7eb",
+    borderRadius: 6,
   },
   title: {
     fontSize: 15,
@@ -118,10 +121,15 @@ export const imageCarouselStyle = StyleSheet.create({
     height: 200,
     width: "100%",
   },
+  slide: {
+    height: 200,
+    width: "100%",
+  },
   imageBackground: {
     flex: 1,
     height: 200,
     justifyContent: "center",
+    width: "100%",
   },
   overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.5)", // Adjust the alpha value for the darkness

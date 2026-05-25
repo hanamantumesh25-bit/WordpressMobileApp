@@ -1,9 +1,6 @@
 import * as api from "@api/wordpressApi";
 import { PostType } from "@storage/reducers/types";
-import {
-  WIKIPEDIA_PLACEHOLDER_IMAGE,
-  WIKIPEDIA_SEARCH_TERM,
-} from "@utils/constants";
+import { WIKIPEDIA_SEARCH_TERM } from "@utils/constants";
 import { useCallback, useEffect, useState } from "react";
 
 interface WikipediaPage {
@@ -21,6 +18,9 @@ interface WikipediaSearchResponse {
   };
 }
 
+const getFallbackImage = (id: number) =>
+  `https://picsum.photos/seed/wikipedia-${id}/800/450`;
+
 const toPost = (page: WikipediaPage): PostType => ({
   id: page.pageid,
   title: {
@@ -30,7 +30,7 @@ const toPost = (page: WikipediaPage): PostType => ({
     rendered: page.extract || "Open this article on Wikipedia to learn more.",
   },
   jetpack_featured_media_url:
-    page.thumbnail?.source || WIKIPEDIA_PLACEHOLDER_IMAGE,
+    page.thumbnail?.source || getFallbackImage(page.pageid),
 });
 
 const fallbackPosts: PostType[] = [
@@ -41,7 +41,7 @@ const fallbackPosts: PostType[] = [
       rendered:
         "Technology is the application of conceptual knowledge to achieve practical goals, especially in a reproducible way.",
     },
-    jetpack_featured_media_url: WIKIPEDIA_PLACEHOLDER_IMAGE,
+    jetpack_featured_media_url: getFallbackImage(1),
   },
   {
     id: 2,
@@ -50,7 +50,7 @@ const fallbackPosts: PostType[] = [
       rendered:
         "Information technology is a set of related fields that include computer systems, software, programming languages, data, and information processing.",
     },
-    jetpack_featured_media_url: WIKIPEDIA_PLACEHOLDER_IMAGE,
+    jetpack_featured_media_url: getFallbackImage(2),
   },
   {
     id: 3,
@@ -59,7 +59,7 @@ const fallbackPosts: PostType[] = [
       rendered:
         "Artificial intelligence is intelligence exhibited by machines, particularly computer systems.",
     },
-    jetpack_featured_media_url: WIKIPEDIA_PLACEHOLDER_IMAGE,
+    jetpack_featured_media_url: getFallbackImage(3),
   },
   {
     id: 4,
@@ -68,7 +68,7 @@ const fallbackPosts: PostType[] = [
       rendered:
         "Computer science is the study of computation, information, and automation.",
     },
-    jetpack_featured_media_url: WIKIPEDIA_PLACEHOLDER_IMAGE,
+    jetpack_featured_media_url: getFallbackImage(4),
   },
 ];
 

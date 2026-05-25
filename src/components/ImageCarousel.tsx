@@ -27,10 +27,11 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ featuredPosts }) => {
       key={featuredPosts.length}
     >
       {featuredPosts.map((post, index) => (
-        <View key={index}>
+        <View key={index} style={imageCarouselStyle.slide}>
           <ImageBackground
             source={{ uri: post.jetpack_featured_media_url }}
-            imageStyle={imageCarouselStyle.imageBackground}
+            resizeMode="cover"
+            style={imageCarouselStyle.imageBackground}
           >
             <View style={imageCarouselStyle.overlay}>
               <Text style={imageCarouselStyle.title}>

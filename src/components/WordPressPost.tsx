@@ -14,7 +14,11 @@ const WordPressPost: React.FC<WordPressPostProps> = ({
   };
   return (
     <View style={postStyles.container}>
-      <Image source={{ uri: imageUrl }} style={postStyles.image} />
+      <Image
+        source={{ uri: imageUrl }}
+        style={postStyles.image}
+        resizeMode="cover"
+      />
       <View style={postStyles.subContainer}>
         <Text style={postStyles.title}>{title}</Text>
         <HTMLRenderer
