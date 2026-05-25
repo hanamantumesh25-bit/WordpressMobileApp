@@ -10,13 +10,20 @@ type WebViewStyle = {
 };
 
 export const globalStyles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    backgroundColor: "#f4f6f8",
+  },
   container: {
     flex: 1,
     padding: 20,
     backgroundColor: "#fff",
   },
   scrollViewContainer: {
-    marginTop: 20,
+    flex: 1,
+  },
+  scrollViewContent: {
+    paddingVertical: 20,
   },
   titleText: {
     fontSize: 24,
@@ -26,6 +33,23 @@ export const globalStyles = StyleSheet.create({
   paragraph: {
     marginVertical: 8,
     lineHeight: 20,
+  },
+  messageContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: 220,
+    paddingHorizontal: 24,
+  },
+  messageText: {
+    color: "#192f45",
+    fontSize: 16,
+    marginTop: 12,
+    textAlign: "center",
+  },
+  errorText: {
+    color: "#b42318",
+    fontSize: 16,
+    textAlign: "center",
   },
 });
 
@@ -61,6 +85,7 @@ export const postStyles = StyleSheet.create({
 export const imageCarouselStyle = StyleSheet.create({
   wrapper: {
     height: 200,
+    width: "100%",
   },
   imageBackground: {
     flex: 1,
