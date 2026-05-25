@@ -1,4 +1,4 @@
-import { PostsState } from "./types";
+import { PostType, PostsState } from "./types";
 import {
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
@@ -8,7 +8,7 @@ import {
 // Action type
 export type PostsAction =
   | { type: typeof FETCH_POSTS_REQUEST }
-  | { type: typeof FETCH_POSTS_SUCCESS; payload: any[] } // Update the type of payload as needed
+  | { type: typeof FETCH_POSTS_SUCCESS; payload: PostType[] }
   | { type: typeof FETCH_POSTS_FAILURE; payload: string };
 
 const initialState: PostsState = {
