@@ -1,18 +1,20 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { ComponentProps } from "react";
 import BookmarksPage from "@screens/BookmarksPage";
 import CategoriesPage from "@screens/CategoriesPage";
 import ExplorePage from "@screens/ExplorePage";
 import React from "react";
 
 const Tab = createBottomTabNavigator();
+type IconName = ComponentProps<typeof Ionicons>["name"];
 
 const AppNavigator: React.FC = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+          let iconName: IconName = "home-outline";
 
           if (route.name === "Explore") {
             iconName = focused ? "home" : "home-outline";
