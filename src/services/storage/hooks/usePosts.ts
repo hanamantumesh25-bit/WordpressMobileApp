@@ -44,11 +44,20 @@ export const usePosts = () => {
     setError(null);
 
     try {
-      const response = await api.get<WikipediaSearchResponse>(
-        `?action=query&format=json&origin=*&generator=search&gsrsearch=${encodeURIComponent(
-          WIKIPEDIA_SEARCH_TERM,
-        )}&gsrlimit=20&prop=extracts|pageimages&exintro=true&explaintext=true&pithumbsize=800`,
-      );
+      const response = await api.get<WikipediaSearchResponse>("", {
+        params: {
+          action: "query",
+          format: "json",
+          origin: "*",
+          generator: "search",
+          gsrsearch: WIKIPEDIA_SEARCH_TERM,
+          gsrlimit: 20,
+          prop: "extracts|pageimages",
+          exintro: true,
+          explaintext: true,
+          pithumbsize: 800,
+        },
+      });
       setPosts(Object.values(response.query?.pages || {}).map(toPost));
     } catch (fetchError: any) {
       setError(fetchError.message || "Unable to load Wikipedia articles.");

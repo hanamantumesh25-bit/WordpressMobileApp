@@ -1,8 +1,12 @@
 import { API_BASE_URL } from "@utils/constants";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const api = axios.create({
-  baseURL: API_BASE_URL, // Replace with your actual URL
+  baseURL: API_BASE_URL,
+  headers: {
+    Accept: "application/json",
+    "Api-User-Agent": "WordpressMobileApp/1.0",
+  },
 });
 
 const handleRequest = async <T>(request: Promise<AxiosResponse<T>>) => {
@@ -14,7 +18,8 @@ const handleRequest = async <T>(request: Promise<AxiosResponse<T>>) => {
   }
 };
 
-export const get = <T>(url: string) => handleRequest<T>(api.get(url));
+export const get = <T>(url: string, config?: AxiosRequestConfig) =>
+  handleRequest<T>(api.get(url, config));
 export const post = <T>(url: string, data: any) =>
   handleRequest<T>(api.post(url, data));
 export const put = <T>(url: string, data: any) =>
