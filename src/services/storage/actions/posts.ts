@@ -4,7 +4,6 @@ import {
   WIKIPEDIA_PLACEHOLDER_IMAGE,
   WIKIPEDIA_SEARCH_TERM,
 } from "@utils/constants";
-import { Dispatch } from "redux";
 
 import {
   FETCH_POSTS_FAILURE,
@@ -61,7 +60,7 @@ const toPost = (page: WikipediaPage): PostType => ({
 
 // Async action creator
 export const fetchPosts =
-  () => async (dispatch: Dispatch<PostsActionTypes>) => {
+  () => async (dispatch: (action: PostsActionTypes) => void) => {
     dispatch({ type: FETCH_POSTS_REQUEST });
 
     try {
